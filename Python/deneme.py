@@ -4,3 +4,5 @@ def selamla():
 selamla()
 
 print("değişiklik")
+
+print("değiişiklik 2.0")
