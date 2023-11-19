@@ -8,12 +8,13 @@ pcdurum = 0
 class bilgisayar():
 
     def __init__(self, pcdurum="Kapalı", internet="Bağlı Değil", googledurum="G_Kapalı",
-                 programlar=["Google", "Havalı Yazı Yazma", "Sayı Tahmin"], ):
+                 programlar=[],ykprogramlar = ["google", "havalı yazı yazma", "sayı tahmin"] ):
         print("Bilgisayar oluşturuldu.")
         self.pcdurum = pcdurum
         self.internet = internet
         self.googledurum = googledurum
         self.programlar = programlar
+        self.ykprogramlar = ykprogramlar
 
     def __str__(self):
         return ("Bilgisayar : {}\nİnternet Durumu : {}\nYüklü Programlar : {}".format(self.pcdurum, self.internet,
@@ -267,36 +268,43 @@ Tabi eğer hocanızın mutlu bir evliliği yoksa ne yaparsanız yapın 100 üzer
             if (pcislem == "1"):
                 print(self.programlar)
                 prginput = input("Çalıştırmak istediğiniz programı yazınız : ")
-                if prginput in ["Google", "google"]:
-                    os.system("cls")
-                    efeninpc.googleac()
-                elif prginput in ["Havalı Yazı Yazma", "havalı yazı yazma"]:
-                    os.system("cls")
-                    efeninpc.havaliyazi()
-                elif prginput in ["sayı tahmin", "Sayı Tahmin", "sayi tahmin"]:
-                    os.system("cls")
-                    efeninpc.sayitahmin()
-                else:
-                    print("lütfen adam gibi bir değer girin")
+                prginput = prginput.lower()
+                for prginput in self.programlar:
+                    if prginput == "google":
+                        os.system("cls")
+                        efeninpc.googleac()
+                    elif prginput == "havalı yazı yazma":
+                        os.system("cls")
+                        efeninpc.havaliyazi()
+                    elif prginput == "sayı tahmin":
+                        os.system("cls")
+                        efeninpc.sayitahmin()
+                    else:
+                        print("lütfen adam gibi bir değer girin")
 
             elif (pcislem == "2"):
+                print(self.ykprogramlar)
                 eklenecekprgrm = input("Lütfen yüklenecek programların ismini araya ',' koyarak yazınız. : ")
                 programlistesi = eklenecekprgrm.split(",")
 
                 for i in programlistesi:
                     efeninpc.programekle(i)
+                    self.ykprogramlar.remove(i)
+
                 print("programlar eklendi")
 
             elif (pcislem == "3"):
                 prgmrsil = input("Lütfen kaldırmak istediğiniz programı yazınız : ")
+                
                 if (prgmrsil in self.programlar):
                     self.programlar.remove(prgmrsil)
                     print("İşlem Başarılı.")
+                    self.ykprogramlar.append(prgmrsil)
                 else:
                     print("Böyle bir program bulunmuyor.")
             elif (pcislem == "4"):
                 print("Çıkış Yaplıyor")
-                time.sleep(2)
+                time.sleep(1)
                 print("""
 **************************************************
 
