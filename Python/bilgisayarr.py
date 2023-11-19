@@ -141,8 +141,10 @@ Tabi eğer hocanızın mutlu bir evliliği yoksa ne yaparsanız yapın 100 üzer
             if hvgiris == "1":
 
                 h = ["a", "b", "c", "d", "e", "f", "g", "ğ", "h", "ı", "i", "j", "k", "l", "m", "n", "o", "ö", "p", "r", "s",
-                    "ş", "t", "u",
-                    "ü", "v", "y", "z", "x", "w", " ", "ç", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+     "ş", "t", "u", "ü", "v", "y", "z", "x", "w", " ", "ç", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+     "A", "B", "C", "D", "E", "F", "G", "Ğ", "H", "I", "İ", "J", "K", "L", "M", "N", "O", "Ö", "P", "R", "S",
+     "Ş", "T", "U", "Ü", "V", "Y", "Z"]
+
                 ekran = ""
                 sayac = 0
                 anahtar = str(input("CÜMLE GİRİN : "))
@@ -170,8 +172,10 @@ Tabi eğer hocanızın mutlu bir evliliği yoksa ne yaparsanız yapın 100 üzer
 
             elif (hvgiris == "2"):
                 h = ["a", "b", "c", "d", "e", "f", "g", "ğ", "h", "ı", "i", "j", "k", "l", "m", "n", "o", "ö", "p", "r", "s",
-                    "ş", "t", "u",
-                    "ü", "v", "y", "z", "x", "w", " ", "ç", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+     "ş", "t", "u", "ü", "v", "y", "z", "x", "w", " ", "ç", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+     "A", "B", "C", "D", "E", "F", "G", "Ğ", "H", "I", "İ", "J", "K", "L", "M", "N", "O", "Ö", "P", "R", "S",
+     "Ş", "T", "U", "Ü", "V", "Y", "Z"]
+
                 ekran = ""
                 sayac = 0
                 anahtar = str(input("CÜMLE GİRİN : "))
@@ -182,7 +186,7 @@ Tabi eğer hocanızın mutlu bir evliliği yoksa ne yaparsanız yapın 100 üzer
                         break
                     for i in h:
 
-                        print(ekran)
+                        print(ekran+i)
                         time.sleep(0.01)
                         
                         try:
