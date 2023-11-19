@@ -136,33 +136,69 @@ Tabi eğer hocanızın mutlu bir evliliği yoksa ne yaparsanız yapın 100 üzer
         self.programlar.append(i)
 
     def havaliyazi(self):
+        while True: 
+            hvgiris = input("Havalı Yazı Version 1\nHavalı Yazı version 2\nLütfen Sürüm Seçiniz (1/2) : ")
+            if hvgiris == "1":
 
-        h = ["a", "b", "c", "d", "e", "f", "g", "ğ", "h", "ı", "i", "j", "k", "l", "m", "n", "o", "ö", "p", "r", "s",
-             "ş", "t", "u",
-             "ü", "v", "y", "z", "x", "w", " ", "ç", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-        ekran = ""
-        sayac = 0
-        anahtar = str(input("CÜMLE GİRİN : "))
-        durum = False
-        while True:
+                h = ["a", "b", "c", "d", "e", "f", "g", "ğ", "h", "ı", "i", "j", "k", "l", "m", "n", "o", "ö", "p", "r", "s",
+                    "ş", "t", "u",
+                    "ü", "v", "y", "z", "x", "w", " ", "ç", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+                ekran = ""
+                sayac = 0
+                anahtar = str(input("CÜMLE GİRİN : "))
+                durum = False
+                while True:
 
-            if durum:
+                    if durum:
+                        break
+                    for i in h:
+
+                        print(ekran + i, end='', flush=True)
+                        time.sleep(0.01)
+                        print('\r' + '' * len(ekran + i), end='', flush=True)
+                        try:
+
+                            if i == anahtar[sayac]:
+                                ekran += i
+                                sayac += 1
+
+                        except:
+                            durum = True
+
+                input("Çıkmak için bir tuşa basın")
                 break
-            for i in h:
 
-                print(ekran + i, end='', flush=True)
-                time.sleep(0.01)
-                print('\r' + '' * len(ekran + i), end='', flush=True)
-                try:
+            elif (hvgiris == "2"):
+                h = ["a", "b", "c", "d", "e", "f", "g", "ğ", "h", "ı", "i", "j", "k", "l", "m", "n", "o", "ö", "p", "r", "s",
+                    "ş", "t", "u",
+                    "ü", "v", "y", "z", "x", "w", " ", "ç", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+                ekran = ""
+                sayac = 0
+                anahtar = str(input("CÜMLE GİRİN : "))
+                durum = False
+                while True:
 
-                    if i == anahtar[sayac]:
-                        ekran += i
-                        sayac += 1
+                    if durum:
+                        break
+                    for i in h:
 
-                except:
-                    durum = True
+                        print(ekran)
+                        time.sleep(0.01)
+                        
+                        try:
 
-        input("Çıkmak için bir tuşa basın")
+                            if i == anahtar[sayac]:
+                                ekran += i
+                                sayac += 1
+
+                        except:
+                            durum = True
+
+                input("Çıkmak için bir tuşa basın")
+                break
+            else:
+                print("Lütfen Geçerli Bir İşlem Giriniz...")
+
 
     def sayitahmin(self):
         print("""*****************************************
@@ -297,6 +333,23 @@ while True:
     elif (islem == "2"):
         os.system("cls")
         efeninpc.pckapa()
+        cikisonay = input("Uygulamadan Çıkmak İster misiniz ? (y/n)\n")
+        if cikisonay == "y":
+            break
+        else:
+            print("""
+    **************************************************
+
+    Hoşgeldiniz...
+
+    1-Bilgisayarı Aç
+
+    2-Bilgisayarı Kapa
+
+    3-Programlar
+
+********************************************************     
+""")
     elif (islem == "3"):
         if (pcdurum == 1):
             os.system("cls")
@@ -309,7 +362,6 @@ while True:
         print("Lütfen geçerli bir işlem giriniz...")
         time.sleep(3)
 
-#
 
 
 
