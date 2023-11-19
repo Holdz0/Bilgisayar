@@ -3,7 +3,20 @@ import random
 import os
 
 pcdurum = 0
+def karsilama():
+    print("""
+    **************************************************
 
+    Hoşgeldiniz...
+
+    1-Bilgisayarı Aç
+
+    2-Bilgisayarı Kapa
+
+    3-Programlar
+
+********************************************************     
+""")
 
 class bilgisayar():
 
@@ -305,36 +318,12 @@ Tabi eğer hocanızın mutlu bir evliliği yoksa ne yaparsanız yapın 100 üzer
             elif (pcislem == "4"):
                 print("Çıkış Yaplıyor")
                 time.sleep(1)
-                print("""
-**************************************************
-
-Hoşgeldiniz...
-
-1-Bilgisayarı Aç
-
-2-Bilgisayarı Kapa
-
-3-Programlar
-
-********************************************************     
-                """)
+                karsilama()
                 break
 
 
 efeninpc = bilgisayar()
-print("""
-    **************************************************
-
-    Hoşgeldiniz...
-
-    1-Bilgisayarı Aç
-
-    2-Bilgisayarı Kapa
-
-    3-Programlar
-
-********************************************************     
-""")
+karsilama()
 
 while True:
 
@@ -349,19 +338,7 @@ while True:
         if cikisonay == "y":
             break
         else:
-            print("""
-    **************************************************
-
-    Hoşgeldiniz...
-
-    1-Bilgisayarı Aç
-
-    2-Bilgisayarı Kapa
-
-    3-Programlar
-
-********************************************************     
-""")
+            karsilama()
     elif (islem == "3"):
         if (pcdurum == 1):
             os.system("cls")
