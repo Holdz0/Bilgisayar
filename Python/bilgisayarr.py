@@ -57,7 +57,7 @@ class bilgisayar():
             print("Bilgisayar zaten kapalı...")
 
     def googleac(self):
-        if ("Google" in self.programlar):
+        if ("google" in self.programlar):
 
             if (self.googledurum == "G_Kapalı"):
                 print("Google Açılıyor..")
