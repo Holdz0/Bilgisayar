@@ -1,9 +1,11 @@
 import time
 import random
 import os
+import sqlite3
+import webbrowser
 
 pcdurum = 0
-def karsilama():
+def karsilamapc():
     print("""
     **************************************************
 
@@ -17,7 +19,72 @@ def karsilama():
 
 ********************************************************     
 """)
+def sqlveri():
+    con = sqlite3.connect("C:/Users/tahae/Desktop/Karışıkü/VSCode/Python/kullanıcılar.db")
+    idlist = []
+    cursor = con.cursor()
 
+    def tablo_olustur():
+        cursor.execute("CREATE TABLE IF NOT EXISTS kullanıcılar (İsim TEXT, Görev TEXT, Şifre TEXT, Kullanıcı_ID TEXT)")
+        con.commit()
+    tablo_olustur()
+    def deger_ekle(isim,gorev,sifre,rastgelesayi):
+        cursor.execute("INSERT INTO kullanıcılar VALUES(?,?,?,?)", (isim, gorev,sifre, rastgelesayi))
+        con.commit()
+    def verileri_al():
+        cursor.execute("Select * From kullanıcılar") 
+        data = cursor.fetchall() 
+        print("Kitaplık Tablosunun bilgileri.....")
+        for i in data:
+            print(i)
+
+    def rastgeleolustur():
+        rsg1 = random.randint(0, 9)
+        rsg2 = random.randint(0, 9)
+        rsg3 = random.randint(0, 9)
+        rsg4 = random.randint(0, 9)
+        rsg1 = str(rsg1)
+        rsg2 = str(rsg2)
+        rsg3 = str(rsg3)
+        rsg4 = str(rsg4)
+
+        tplm = rsg1  + rsg2 + rsg3 + rsg4
+        return tplm
+
+    def veri_sil():
+        pass
+
+    while True:
+        komut = input("""Yapmak istediğiniz işlem :
+        
+        1 - Verileri Görüntüle
+        
+        2 - Yeni Veri Ekle
+        
+        3 - Çıkış
+            
+        """)
+        if (komut == "1"):
+            verileri_al()
+        elif (komut == "2"):
+            isim = input("lütfen İsim Girin : ")
+            gorev = input("Lütfen Görev Girin : ")
+            sifre = input("Lütfen Şifre Girin : ")
+            rastgelesayi = rastgeleolustur()
+            while True: 
+                if rastgelesayi in idlist:
+                    print("Bu sayı zaten listede var. Yeni bir sayı üretiyorum...")
+                    rastgelesayi = rastgeleolustur()
+                else:
+                    print("Kaydedildi")
+                    idlist.append(rastgelesayi)
+                    deger_ekle(isim,gorev,sifre,rastgelesayi)
+                    break
+
+        elif (komut == "3"):
+            kullanicigirdi()
+        else:
+            print("adam gibi bişe gir")
 class bilgisayar():
 
     def __init__(self, pcdurum="Kapalı", internet="Bağlı Değil", googledurum="G_Kapalı",
@@ -37,7 +104,7 @@ class bilgisayar():
         if (self.pcdurum == "Kapalı"):
 
             print("Bilgisayar açılıyor. Lütfen bekleyin...")
-            time.sleep(3)
+            time.sleep(1.5)
             print("Bilgisayar Açıldı")
             self.pcdurum = "Açık"
             global pcdurum
@@ -49,7 +116,7 @@ class bilgisayar():
     def pckapa(self):
         if (self.pcdurum == "Açık"):
             print("Bilgisayar Kapanıyor. Lütfen bekleyin...")
-            time.sleep(3)
+            time.sleep(1.5)
             print("Bilgisayar Kapandı")
             self.pcdurum = "Kapalı"
 
@@ -70,15 +137,15 @@ Google'a Hoşgeldiniz
 
 Araştırmak için konu seçiniz.
 
-1-Muhammed Ulusoy aslında iplikçi mi ?
-2-Seyit neden mal ?
-3-Kızlarla nasıl konuşulur ?
-4-Kimya quizleri nasıl fullenir ? 
-5-Python mı daha iyi java mı ?
-n - sonraki sayfa
+1 - Muhammed Ulusoy aslında iplikçi mi ?
+2 - Seyit neden mal ?
+3 - Kızlarla nasıl konuşulur ?
+4 - Kimya quizleri nasıl fullenir ? 
+5 - Python mı daha iyi java mı ?
+r - The Google
 q - Çıkış
 
-                                            """)
+işlem : """)
 
                     if (googleislem == "1"):
                         os.system("cls")
@@ -132,8 +199,10 @@ Tabi eğer hocanızın mutlu bir evliliği yoksa ne yaparsanız yapın 100 üzer
                     elif (googleislem =="5"):
                         os.system("cls")
                         print("Java.(Bu program Python ile yazıldı...)")
-                    elif (googleislem == "n"):
-                        pass
+                    elif (googleislem == "r"):
+                        url = f'https://www.google.com/search?q='
+                        url2 = input('ne araştırmak istersiniz : ')
+                        webbrowser.open(url+url2)
                     elif (googleislem == "q"):
                         os.system("cls")
                         print("çıkış başarılı")
@@ -318,43 +387,145 @@ Tabi eğer hocanızın mutlu bir evliliği yoksa ne yaparsanız yapın 100 üzer
             elif (pcislem == "4"):
                 print("Çıkış Yaplıyor")
                 time.sleep(1)
-                karsilama()
+                karsilamapc()
                 break
 
 
 efeninpc = bilgisayar()
-karsilama()
 
-while True:
+def kullanicigirdi():
+    print("""
+    **************************************
 
-    islem = input("İşlem Seçiniz : ")
-    if (islem == "1"):
-        os.system("cls")
-        efeninpc.pcac()
-    elif (islem == "2"):
-        os.system("cls")
-        efeninpc.pckapa()
-        cikisonay = input("Uygulamadan Çıkmak İster misiniz ? (y/n)\n")
-        if cikisonay == "y":
+    Hoşgeldiniz Bilgisayar programını kullanmak için giriş yapın:
+
+    1- Giriş Yap
+    2- Kayıt Ol
+    3- Admin Giriş
+    4- Çıkış
+
+    ***************************************
+    """)
+
+    kullanici_adi = ["admin","1"]  #sorgulayıcısı a
+    kullanici_sifre = ["0000","1"] # sorgulayıcı b
+    a = len(kullanici_adi)
+    b = len(kullanici_sifre)
+
+    demetsorgusira = 0
+
+    yetkiizin = False
+
+    class yetkili():
+
+        def __init__(self, isim, soyisim, yetki_duzeyi, yas):
+            self.isim = isim
+            self.soyisim = soyisim
+            self.yetki_duzeyi = yetki_duzeyi
+            self.yas = yas
+
+        def bilgilerigoster(self):
+            print("""
+
+            İsim = {}  
+
+            Soy isim = {}  
+
+            Yetki Düzeyi = {}
+
+            Yaş = {}
+                            """.format(self.isim, self.soyisim, self.yetki_duzeyi, self.yas))
+        def saldiribaslat(self):
+            print("saldırı başlatılıyor...")
+            saldiribaslat = True
+
+        def yetkizin(self):
+            print("yetki verildi")
+            yetkiizin = True
+
+        def adminpanell(self):
+
+            sqlveri()
+            
+    admin = yetkili("Taha Efe","Tuncer","üst Düzey",18)
+
+
+
+    ilkislemsorgu = True
+
+
+    while ilkislemsorgu:
+        girdi = input("işlem giriniz : ")
+
+        if girdi == "1":
+            girdi_kullanici_adi = str(input("Kullanıcı adını giriniz : "))
+            girdi_kullanici_sifre = str(input("Şifre giriniz : "))
+
+            for demetsorgusira in range(len(kullanici_adi)):
+                if girdi_kullanici_adi != kullanici_adi[demetsorgusira] or girdi_kullanici_sifre != kullanici_sifre[demetsorgusira]:
+                    demetsorgusira += 1
+
+
+                elif girdi_kullanici_adi == kullanici_adi[demetsorgusira] and girdi_kullanici_sifre == kullanici_sifre[demetsorgusira]:
+                    karsilamapc()
+                    karsilamainput()
+                    break
+
+            else:
+                print("kullanıcı adı veya şifre yanlış")
+
+        elif girdi == "2":
+            kayit_kullanici = str(input("Yeni kullanıcı adını giriniz : "))
+            kayit_sifre = str(input("Yeni şifre giriniz : "))
+            while True:
+                if kayit_kullanici in kullanici_adi:
+                    kayit_kullanici = str(input("Bu kullanıcı adı zaten kayıtlı...\nLütfen Başka bir kullanıcı adi giriniz : \n"))
+                else:   
+
+                    kullanici_adi.append(kayit_kullanici)
+                    kullanici_sifre.append(kayit_sifre)
+                    print("Başarıyla kaydedildi")
+                    break
+
+        elif girdi == "3":
+            admin_kullanici = input("Kullanıcı adı giriniz : ")
+            admin_sifre = input("şifre giriniz : ")
+
+            if admin_kullanici == "admin" and admin_sifre == "0000":
+                print("giriş başarılı")
+                ilkislemsorgu = False
+                admin.adminpanell()
+        elif girdi == "4":
             break
         else:
-            karsilama()
-    elif (islem == "3"):
-        if (pcdurum == 1):
+            print("adam gibi işlem gir la")
+            continue
+def karsilamainput():
+
+    while True:
+
+        islem = input("İşlem Seçiniz : ")
+        if (islem == "1"):
             os.system("cls")
+            efeninpc.pcac()
+        elif (islem == "2"):
+            os.system("cls")
+            efeninpc.pckapa()
+            cikisonay = input("Uygulamadan Çıkmak İster misiniz ? (y/n)\n")
+            if cikisonay == "y":
+                kullanicigirdi()
+                break
+            else:
+                karsilamapc()
+        elif (islem == "3"):
+            if (pcdurum == 1):
+                os.system("cls")
 
-            efeninpc.programuı()
+                efeninpc.programuı()
+            else:
+                print("lütfen ilk önce bilgisayarı açınız")
+                print(pcdurum)
         else:
-            print("lütfen ilk önce bilgisayarı açınız")
-            print(pcdurum)
-    else:
-        print("Lütfen geçerli bir işlem giriniz...")
-        time.sleep(3)
-
-
-
-
-
-
-
-
+            print("Lütfen geçerli bir işlem giriniz...")
+            time.sleep(3)
+kullanicigirdi()
