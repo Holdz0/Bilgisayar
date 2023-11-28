@@ -7,7 +7,7 @@ import webbrowser
 pcdurum = 0
 def karsilamapc():
     print("""
-    **************************************************
+********************************************************
 
     Hoşgeldiniz...
 
@@ -20,7 +20,7 @@ def karsilamapc():
 ********************************************************     
 """)
 def sqlveri():
-    con = sqlite3.connect("C:/Users/tahae/Desktop/Karışıkü/VSCode/Python/kullanıcılar.db")
+    con = sqlite3.connect("kullanıcılar.db")
     idlist = []
     cursor = con.cursor()
 
@@ -83,6 +83,7 @@ def sqlveri():
 
         elif (komut == "3"):
             kullanicigirdi()
+            break
         else:
             print("adam gibi bişe gir")
 class bilgisayar():
@@ -351,18 +352,22 @@ Tabi eğer hocanızın mutlu bir evliliği yoksa ne yaparsanız yapın 100 üzer
                 print(self.programlar)
                 prginput = input("Çalıştırmak istediğiniz programı yazınız : ")
                 prginput = prginput.lower()
-                for prginput in self.programlar:
-                    if prginput == "google":
+                for i in self.programlar:
+                    if prginput == "google" and i == "google":
                         os.system("cls")
                         efeninpc.googleac()
-                    elif prginput == "havalı yazı yazma":
+                        break
+                    if prginput == "havalı yazı yazma" and i == "havalı yazı yazma":
                         os.system("cls")
                         efeninpc.havaliyazi()
-                    elif prginput == "sayı tahmin":
+                        break
+                    if prginput == "sayı tahmin" and i == "sayı tahmin":
                         os.system("cls")
                         efeninpc.sayitahmin()
+                        break
                     else:
                         print("lütfen adam gibi bir değer girin")
+                        
 
             elif (pcislem == "2"):
                 print(self.ykprogramlar)
